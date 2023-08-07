@@ -1,9 +1,8 @@
 import Login from "../components/Login";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useContext } from "react";
 import imageURL from "../utils/images/bg-img2.jpg";
 import { ThemeContext } from "../utils/theme/ThemeContext";
-import { relative } from "path";
 
 const HomeLayout = () => {
   const theme = useContext(ThemeContext);
