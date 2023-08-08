@@ -8,6 +8,7 @@ import {
   Outlet,
 } from "react-router-dom";
 import HomeLayout from "./layout/HomeLayout";
+import RoomLayout from "./layout/RoomLayout";
 import { ThemeContextProvider } from "./utils/theme/ThemeContext";
 
 // const socket: Socket = io("http://localhost:3001");
@@ -17,6 +18,10 @@ const routes: RouteObject[] = [
     path: "/",
     element: <HomeLayout />,
   },
+  {
+    path: "room",
+    element: <RoomLayout/>
+  }
 ];
 
 const router = createBrowserRouter(routes);
