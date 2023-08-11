@@ -1,13 +1,19 @@
 import { Fab, Stack } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Settings from "@mui/icons-material/Settings";
 import CreateOutlined from "@mui/icons-material/CreateOutlined";
+import { ThemeContext } from "../../../utils/theme/ThemeContext";
+
 
 const Header = () => {
+  const theme = useContext(ThemeContext);
   return (
     <>
-      <Stack p={2} direction="row">
+      <Stack p={2} direction="row" sx={{
+        borderBottom: `1.9px solid ${theme.palette.primary.light}`,
+        height: "auto",
+      }}>
         <Fab disabled size="medium" sx={{ marginRight: "auto" }}>
           <FavoriteIcon />
         </Fab>
