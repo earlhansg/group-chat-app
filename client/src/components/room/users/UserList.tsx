@@ -1,10 +1,20 @@
-import { Stack, Box, Typography, Fab, Badge } from "@mui/material";
+import { Stack, Box, Typography, Badge } from "@mui/material";
 import { ThemeContext } from "../../../utils/theme/ThemeContext";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const UserList = () => {
-  // const theme = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   return (
     <Stack sx={{ marginTop: 3, marginLeft: 4, marginRight: 3 }}>
       <Typography
@@ -13,16 +23,26 @@ const UserList = () => {
           fontWeight: "600",
           marginBottom: 1,
         }}
-        color="primary"
+        color="secondary"
       >
         Online
       </Typography>
-      <Stack
-        flexDirection={"row"}
+      <Box
         marginTop={1}
-        sx={{ alignItems: "center" }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          ":hover": {
+            backgroundColor: isHovered ? theme.palette.primary.light : null,
+            transition: isHovered
+              ? "transform 150ms, background-color 150ms"
+              : null,
+          },
+        }}
         gap={1}
         p={2}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <Stack>
           <Badge
@@ -47,13 +67,23 @@ const UserList = () => {
         >
           Earl Hans Pelin Genoso
         </Typography>
-      </Stack>
-      <Stack
-        flexDirection={"row"}
+      </Box>
+      <Box
         marginTop={1}
-        sx={{ alignItems: "center" }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          ":hover": {
+            backgroundColor: isHovered ? theme.palette.primary.light : null,
+            transition: isHovered
+              ? "transform 150ms, background-color 150ms"
+              : null,
+          },
+        }}
         gap={1}
         p={2}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <Stack>
           <Badge
@@ -76,9 +106,9 @@ const UserList = () => {
           color="primary"
           ml={1}
         >
-          Kristy Mae Almuete
+          Kristy Mae Jomoc Almuete
         </Typography>
-      </Stack>
+      </Box>
     </Stack>
   );
 };
