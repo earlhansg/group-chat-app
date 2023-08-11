@@ -33,7 +33,7 @@ const HomeLayout = () => {
       </Typography> */}
       <Box
         sx={{
-          height: "50%",
+          height: "auto",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

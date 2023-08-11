@@ -10,9 +10,10 @@ const Login = () => {
         width: "500px",
         backgroundColor: theme.palette.primary.main,
         borderRadius: "5px",
+        marginTop: "5rem"
       }}
     >
-      <Box marginTop={5}>
+      <Box marginTop={4}>
         <Typography
           sx={{
             fontSize: "20px",
@@ -41,11 +42,17 @@ const Login = () => {
               fontSize: "12px",
               color: theme.palette.primary.contrastText,
               fontWeight: "400",
+              marginBottom: 1
             }}
           >
             USERNAME
           </Typography>
-          <TextField color="secondary" />
+          <TextField
+            hiddenLabel
+            id="filled-hidden-label-normal"
+            variant="filled"
+            color="secondary"
+          />
         </Stack>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center" }} marginTop={3}>
@@ -55,11 +62,17 @@ const Login = () => {
               fontSize: "12px",
               color: theme.palette.primary.contrastText,
               fontWeight: "400",
+              marginBottom: 1
             }}
           >
             CODE
           </Typography>
-          <TextField color="secondary" />
+          <TextField
+            hiddenLabel
+            id="filled-hidden-label-normal"
+            variant="filled"
+            color="secondary"
+          />
         </Stack>
       </Box>
       <Box
@@ -73,7 +86,7 @@ const Login = () => {
             color="secondary"
             sx={{ width: "100%", color: theme.palette.primary.contrastText }}
           >
-            Contained
+            Join
           </Button>
         </Stack>
       </Box>
