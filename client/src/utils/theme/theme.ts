@@ -14,6 +14,9 @@ export const theme = createTheme({
         dark: '#7187dd',
         contrastText: "#64676e"
       },
+      info: {
+        main:'#52b018'
+      },
       action: {
         disabled: '#143a47'
       }
