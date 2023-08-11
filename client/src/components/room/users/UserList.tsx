@@ -32,11 +32,9 @@ const UserList = () => {
         sx={{
           display: "flex",
           alignItems: "center",
+          transition: "background-color 0.5s",
           ":hover": {
-            backgroundColor: isHovered ? theme.palette.primary.light : null,
-            transition: isHovered
-              ? "transform 150ms, background-color 150ms"
-              : null,
+            backgroundColor: isHovered ? theme.palette.primary.light : null
           },
         }}
         gap={1}
@@ -73,11 +71,9 @@ const UserList = () => {
         sx={{
           display: "flex",
           alignItems: "center",
+          transition: "background-color 0.5s",
           ":hover": {
-            backgroundColor: isHovered ? theme.palette.primary.light : null,
-            transition: isHovered
-              ? "transform 150ms, background-color 150ms"
-              : null,
+            backgroundColor: isHovered ? theme.palette.primary.light : null
           },
         }}
         gap={1}
