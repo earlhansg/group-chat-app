@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import React, { useContext } from "react";
 import Users from "../components/room/users/Users";
-import Chat from "../components/room/Chat";
+import Chat from "../components/room/chat/Chat";
 import GroupDetails from "../components/room/GroupDetails";
 import { ThemeContext } from "../utils/theme/ThemeContext";
 
