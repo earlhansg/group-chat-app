@@ -1,21 +1,23 @@
-import { Stack, Box, Typography, Badge } from "@mui/material";
+import { Stack, Box, Typography, Badge, TextField, Fab } from "@mui/material";
 import { ThemeContext } from "../../../utils/theme/ThemeContext";
 import React, { useContext } from "react";
+import SendIcon from "@mui/icons-material/Send";
 
 const Content = () => {
   const theme = useContext(ThemeContext);
   return (
-    <Box>
-      <Stack m={2}>
-        <Typography mr={1}
-                sx={{
-                    fontSize: "13px",
-                    fontWeight: "700",
-                    marginBottom: 1,
-                    textAlign: "right"
-                }}
-                >
-                You
+    <Box display={"flex"} flexDirection={"column"} sx={{ height: "90%" }}>
+      <Stack m={3}>
+        <Typography
+          mr={1}
+          sx={{
+            fontSize: "13px",
+            fontWeight: "700",
+            marginBottom: 1,
+            textAlign: "right",
+          }}
+        >
+          You
         </Typography>
         <Stack flexDirection={"row"} justifyContent={"end"}>
           <Stack
@@ -42,16 +44,17 @@ const Content = () => {
         </Stack>
       </Stack>
 
-      <Stack m={2}>
-        <Typography mr={1}
-                sx={{
-                    fontSize: "13px",
-                    fontWeight: "700",
-                    marginBottom: 1,
-                    textAlign: "left"
-                }}
-                >
-                Brian
+      <Stack m={3} mb={"auto"}>
+        <Typography
+          mr={1}
+          sx={{
+            fontSize: "13px",
+            fontWeight: "700",
+            marginBottom: 1,
+            textAlign: "left",
+          }}
+        >
+          Brian
         </Typography>
         <Stack flexDirection={"row"} justifyContent={"start"}>
           <Stack
@@ -77,7 +80,21 @@ const Content = () => {
           </Stack>
         </Stack>
       </Stack>
-      
+
+      <Stack flexDirection={"row"} gap={2} m={3}>
+        <TextField
+          InputProps={{ sx: { borderRadius: "25px" } }}
+          id="outlined-basic"
+          placeholder="Type a Message"
+          variant="outlined"
+          sx={{
+            flexGrow: 1,
+          }}
+        />
+        <Fab disabled size="large">
+          <SendIcon />
+        </Fab>
+      </Stack>
     </Box>
   );
 };
