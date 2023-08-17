@@ -5,6 +5,7 @@ import SendIcon from "@mui/icons-material/Send";
 
 const Content = () => {
   const theme = useContext(ThemeContext);
+
   return (
     <Box display={"flex"} flexDirection={"column"} sx={{ height: "90%" }}>
       <Stack m={3}>
