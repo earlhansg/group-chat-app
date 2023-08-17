@@ -1,9 +1,25 @@
 import { ThemeContext } from "../utils/theme/ThemeContext";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { io, Socket } from "socket.io-client";
+
+
+const socket: Socket = io("http://localhost:3001");
+
 
 const Login = () => {
   const theme = useContext(ThemeContext);
+  const room = "area41"
+  const [username, setUsername] = useState("");
+  const [code, setCode ] = useState("");
+
+  const joinRoom = () => {
+    // console.log('data', username, code);
+    if(username !== "" && code === room) {
+      socket.emit("join_room", room);
+    }
+  }
+
   return (
     <Box
       sx={{
@@ -52,6 +68,9 @@ const Login = () => {
             id="filled-hidden-label-normal"
             variant="filled"
             color="secondary"
+            onChange={(event : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+              setUsername(event.target.value)
+            }}
           />
         </Stack>
       </Box>
@@ -72,6 +91,9 @@ const Login = () => {
             id="filled-hidden-label-normal"
             variant="filled"
             color="secondary"
+            onChange={(event : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+              setCode(event.target.value)
+            }}
           />
         </Stack>
       </Box>
@@ -85,6 +107,7 @@ const Login = () => {
             variant="contained"
             color="secondary"
             sx={{ width: "100%", color: theme.palette.primary.contrastText }}
+            onClick={joinRoom}
           >
             Join
           </Button>
