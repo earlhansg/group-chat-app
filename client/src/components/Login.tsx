@@ -3,13 +3,15 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import { useNavigate  } from 'react-router-dom'
+import { UserContext } from "../utils/auth/UserContext";
 
 
-const socket: Socket = io("http://localhost:3001");
+// const socket: Socket = io("http://localhost:3001");
 
 
 const Login = () => {
   const theme = useContext(ThemeContext);
+  const userContext = useContext(UserContext);
   const room = "area51"
   const [username, setUsername] = useState("");
   const [code, setCode ] = useState("");
@@ -19,7 +21,8 @@ const Login = () => {
   const joinRoom = () => {
     // console.log('data', username, code);
     if(username !== "" && code === room) {
-      socket.emit("join_room", room);
+      // socket.emit("join_room", room);
+      userContext?.setUser({ username, code })
       navigate("/room");
     }
   }

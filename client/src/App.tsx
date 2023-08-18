@@ -10,6 +10,7 @@ import {
 import HomeLayout from "./layout/HomeLayout";
 import RoomLayout from "./layout/RoomLayout";
 import { ThemeContextProvider } from "./utils/theme/ThemeContext";
+import UserContextProvider from "./utils/auth/UserContext";
 
 // const socket: Socket = io("http://localhost:3001");
 
@@ -26,7 +27,7 @@ const routes: RouteObject[] = [
 
 const router = createBrowserRouter(routes);
 
-function App() {
+function App() {  
   // const [username, setUsername] = useState("");
   // const [room, setRoom] = useState("");
 
@@ -71,8 +72,10 @@ function App() {
     // </>
     <>
     <ThemeContextProvider>
-      <RouterProvider router={router} />
-      <Outlet />
+      <UserContextProvider>
+        <RouterProvider router={router} />
+        <Outlet />
+      </UserContextProvider>
     </ThemeContextProvider>
     </>
   );

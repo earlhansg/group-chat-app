@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { io, Socket } from "socket.io-client";
 
 export type AuthUser = {
   username: string;
