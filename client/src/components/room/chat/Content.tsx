@@ -45,36 +45,35 @@ const Content = () => {
 
   const [socket, setSocket] = useState<Socket | null>(null);
 
-useEffect(() => {
-  if (!socket) {
-    setSocket(io("http://localhost:3001").emit("join_room", "area51"));
-  }
+  useEffect(() => {
+    if (!socket) {
+      setSocket(io("http://localhost:3001").emit("join_room", "area51"));
+    }
 
-  socket?.on("receive_message", (data: Message) => {
-      console.log('data', data);
+    socket?.on("receive_message", (data: Message) => {
+      console.log("data", data);
       setMessageList((list) => [...list, data]);
-  });
+    });
 
-  return () => {
-    socket?.disconnect();
-  };
-}, [socket]);
+    return () => {
+      socket?.disconnect();
+    };
+  }, [socket]);
 
-useEffect(() => {
-  if (!socket) return;
+  useEffect(() => {
+    if (!socket) return;
 
-  socket.on("connect", () => {
-    console.log("socket connected");
-  });
+    socket.on("connect", () => {
+      console.log("socket connected");
+    });
 
-  socket.on("event1", data1 => {});
+    socket.on("event1", (data1) => {});
 
-  return () => {
-    socket.off("connect");
-    socket.off("event1");
-  };
-}, [socket]);
-
+    return () => {
+      socket.off("connect");
+      socket.off("event1");
+    };
+  }, [socket]);
 
   const sendMessage = async () => {
     console.log("click");
@@ -96,7 +95,6 @@ useEffect(() => {
 
   return (
     <Box display={"flex"} flexDirection={"column"} sx={{ height: "90%" }}>
-
       {messageList.map(({ author, message, time }, index) => {
         return (
           <Stack key={index} m={3} mb={"auto"}>
@@ -110,13 +108,16 @@ useEffect(() => {
                   author !== userContext?.user?.username ? "left" : "right",
               }}
             >
-                {
-                  author === userContext?.user?.username && messageList[index === 0 ? -1 : index - 1]?.author === userContext?.user?.username ? ""
-                  :
-                  author !== userContext?.user?.username && messageList[index === 0 ? -1 : index - 1]?.author === author ? ""
-                  : author === userContext?.user?.username ? "You"
-                  : author
-                }
+              {author === userContext?.user?.username &&
+              messageList[index === 0 ? -1 : index - 1]?.author ===
+                userContext?.user?.username
+                ? ""
+                : author !== userContext?.user?.username &&
+                  messageList[index === 0 ? -1 : index - 1]?.author === author
+                ? ""
+                : author === userContext?.user?.username
+                ? "You"
+                : author}
             </Typography>
             <Stack
               flexDirection={"row"}
@@ -144,7 +145,10 @@ useEffect(() => {
                   author !== userContext?.user?.username ? "left" : "right",
               }}
             >
-              {time === messageList[index === 0 ? -1 : index - 1]?.time && messageList[index === 0 ? -1 : index - 1]?.author === author ? "" : time}
+              {time === messageList[index === 0 ? -1 : index - 1]?.time &&
+              messageList[index === 0 ? -1 : index - 1]?.author === author
+                ? ""
+                : time}
             </Typography>
           </Stack>
         );
