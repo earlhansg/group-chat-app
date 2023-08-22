@@ -22,6 +22,7 @@ const Login = () => {
     // console.log('data', username, code);
     if(username !== "" && code === room) {
       // socket.emit("join_room", room);
+
       userContext?.setUser({ username, code })
       navigate("/room");
     }
