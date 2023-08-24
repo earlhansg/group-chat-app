@@ -1,32 +1,27 @@
 import { ThemeContext } from "../utils/theme/ThemeContext";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
-import { io, Socket } from "socket.io-client";
-import { useNavigate  } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../utils/auth/UserContext";
-
-
-// const socket: Socket = io("http://localhost:3001");
-
 
 const Login = () => {
   const theme = useContext(ThemeContext);
   const userContext = useContext(UserContext);
-  const room = "area51"
+  const room = "area51";
   const [username, setUsername] = useState("");
-  const [code, setCode ] = useState("");
+  const [code, setCode] = useState("");
 
   const navigate = useNavigate();
 
   const joinRoom = () => {
     // console.log('data', username, code);
-    if(username !== "" && code === room) {
+    if (username !== "" && code === room) {
       // socket.emit("join_room", room);
 
-      userContext?.setUser({ username, code })
+      userContext?.setUser({ username, code });
       navigate("/room");
     }
-  }
+  };
 
   return (
     <Box
@@ -34,7 +29,7 @@ const Login = () => {
         width: "500px",
         backgroundColor: theme.palette.primary.main,
         borderRadius: "5px",
-        marginTop: "5rem"
+        marginTop: "5rem",
       }}
     >
       <Box marginTop={4}>
@@ -66,7 +61,7 @@ const Login = () => {
               fontSize: "12px",
               color: theme.palette.primary.contrastText,
               fontWeight: "400",
-              marginBottom: 1
+              marginBottom: 1,
             }}
           >
             USERNAME
@@ -76,8 +71,10 @@ const Login = () => {
             id="filled-hidden-label-normal"
             variant="filled"
             color="secondary"
-            onChange={(event : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-              setUsername(event.target.value)
+            onChange={(
+              event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+            ) => {
+              setUsername(event.target.value);
             }}
           />
         </Stack>
@@ -89,7 +86,7 @@ const Login = () => {
               fontSize: "12px",
               color: theme.palette.primary.contrastText,
               fontWeight: "400",
-              marginBottom: 1
+              marginBottom: 1,
             }}
           >
             CODE
@@ -99,8 +96,10 @@ const Login = () => {
             id="filled-hidden-label-normal"
             variant="filled"
             color="secondary"
-            onChange={(event : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-              setCode(event.target.value)
+            onChange={(
+              event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+            ) => {
+              setCode(event.target.value);
             }}
           />
         </Stack>

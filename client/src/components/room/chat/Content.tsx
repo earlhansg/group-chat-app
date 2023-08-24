@@ -114,7 +114,7 @@ const Content = () => {
     >
       <Stack
         m={3}
-        p={3}
+        p={2}
         mb={"auto"}
         sx={{
           height: "100%",

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
-import { io, Socket } from "socket.io-client";
 import {
   createBrowserRouter,
   RouteObject,
@@ -12,8 +11,6 @@ import RoomLayout from "./layout/RoomLayout";
 import { ThemeContextProvider } from "./utils/theme/ThemeContext";
 import UserContextProvider from "./utils/auth/UserContext";
 
-// const socket: Socket = io("http://localhost:3001");
-
 const routes: RouteObject[] = [
   {
     path: "/",
@@ -21,62 +18,21 @@ const routes: RouteObject[] = [
   },
   {
     path: "room",
-    element: <RoomLayout/>
-  }
+    element: <RoomLayout />,
+  },
 ];
 
 const router = createBrowserRouter(routes);
 
-function App() {  
-  // const [username, setUsername] = useState("");
-  // const [room, setRoom] = useState("");
-
-  // useEffect(() => {
-  //   // You can use the 'socket' object here for your socket operations
-
-  //   return () => {
-  //     // Clean up the socket connection if needed
-  //     socket.disconnect();
-  //   };
-  // }, []);
-
-  // const joinRoom = () => {
-  //   if (username !== "" && room !== "") {
-  //     socket.emit("join_room", room);
-  //   }
-  // };
+function App() {
   return (
-    // <div className="App">
-    //   <div className="joinChatContainer">
-    //     <h3>Join A Chat</h3>
-    //     <input
-    //       type="text"
-    //       placeholder="John..."
-    //       onChange={(event) => {
-    //         setUsername(event.target.value);
-    //       }}
-    //     />
-    //     <input
-    //         type="text"
-    //         placeholder="Room ID..."
-    //         onChange={(event) => {
-    //           setRoom(event.target.value);
-    //         }}
-    //       />
-    //     <button onClick={joinRoom}>Join A Room</button>
-    //   </div>
-    // </div>
-    // <>
-    //   <RouterProvider router={router} />
-    //   <Outlet />
-    // </>
     <>
-    <ThemeContextProvider>
-      <UserContextProvider>
-        <RouterProvider router={router} />
-        <Outlet />
-      </UserContextProvider>
-    </ThemeContextProvider>
+      <ThemeContextProvider>
+        <UserContextProvider>
+          <RouterProvider router={router} />
+          <Outlet />
+        </UserContextProvider>
+      </ThemeContextProvider>
     </>
   );
 }

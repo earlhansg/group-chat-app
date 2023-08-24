@@ -34,7 +34,7 @@ const UserList = () => {
           alignItems: "center",
           transition: "background-color 0.5s",
           ":hover": {
-            backgroundColor: isHovered ? theme.palette.primary.light : null
+            backgroundColor: isHovered ? theme.palette.primary.light : null,
           },
         }}
         gap={1}
@@ -73,7 +73,7 @@ const UserList = () => {
           alignItems: "center",
           transition: "background-color 0.5s",
           ":hover": {
-            backgroundColor: isHovered ? theme.palette.primary.light : null
+            backgroundColor: isHovered ? theme.palette.primary.light : null,
           },
         }}
         gap={1}
@@ -102,7 +102,7 @@ const UserList = () => {
           color="primary"
           ml={1}
         >
-          Kristy Mae Jomoc Almuete
+          Juan Dela Cruz
         </Typography>
       </Box>
     </Stack>
