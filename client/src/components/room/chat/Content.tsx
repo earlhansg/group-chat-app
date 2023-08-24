@@ -1,6 +1,16 @@
-import { Stack, Box, Typography, Badge, TextField, Fab } from "@mui/material";
+import {
+  Stack,
+  Box,
+  Typography,
+  TextField,
+  Fab
+} from "@mui/material";
 import { ThemeContext } from "../../../utils/theme/ThemeContext";
-import React, { useContext, useEffect, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import SendIcon from "@mui/icons-material/Send";
 import { io, Socket } from "socket.io-client";
 import { UserContext } from "../../../utils/auth/UserContext";
@@ -76,7 +86,7 @@ const Content = () => {
   }, [socket]);
 
   const sendMessage = async () => {
-    console.log("click");
+    // console.log("click");
     if (currentMessage !== "") {
       const messageData: Message = {
         room: "area51",
@@ -94,66 +104,94 @@ const Content = () => {
   };
 
   return (
-    <Box display={"flex"} flexDirection={"column"} sx={{ height: "90%" }}>
-      {messageList.map(({ author, message, time }, index) => {
-        return (
-          <Stack key={index} m={3} mb={"auto"}>
-            <Typography
-              mr={1}
-              sx={{
-                fontSize: "13px",
-                fontWeight: "700",
-                marginBottom: 1,
-                textAlign:
-                  author !== userContext?.user?.username ? "left" : "right",
-              }}
-            >
-              {author === userContext?.user?.username &&
-              messageList[index === 0 ? -1 : index - 1]?.author ===
-                userContext?.user?.username
-                ? ""
-                : author !== userContext?.user?.username &&
-                  messageList[index === 0 ? -1 : index - 1]?.author === author
-                ? ""
-                : author === userContext?.user?.username
-                ? "You"
-                : author}
-            </Typography>
-            <Stack
-              flexDirection={"row"}
-              justifyContent={
-                author !== userContext?.user?.username ? "start" : "end"
-              }
-            >
-              <Stack style={checkBorderStyle(author)} p={2}>
-                <Typography
-                  sx={{
-                    fontSize: "13px",
-                    marginBottom: 1,
-                  }}
-                >
-                  {message}
-                </Typography>
+    <Box
+      display={"flex"}
+      flexDirection={"column"}
+      sx={{
+        height: "90%",
+        justifyContent: !messageList.length ? "end" : "unset",
+      }}
+    >
+      <Stack
+        m={3}
+        p={3}
+        mb={"auto"}
+        sx={{
+          height: "100%",
+          overflow: "auto",
+          "&::-webkit-scrollbar": {
+            width: 10,
+            marginLeft: "10px",
+            marginRight: "10px",
+          },
+          "&::-webkit-scrollbar-track": {
+            // backgroundColor: "orange"
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: theme.palette.primary.light,
+            // borderRadius: 2
+          },
+        }}
+      >
+        {messageList.map(({ author, message, time }, index) => {
+          return (
+            <Stack key={index}>
+              <Typography
+                mr={1}
+                sx={{
+                  fontSize: "13px",
+                  fontWeight: "700",
+                  marginBottom: 1,
+                  textAlign:
+                    author !== userContext?.user?.username ? "left" : "right",
+                }}
+              >
+                {author === userContext?.user?.username &&
+                messageList[index === 0 ? -1 : index - 1]?.author ===
+                  userContext?.user?.username
+                  ? ""
+                  : author !== userContext?.user?.username &&
+                    messageList[index === 0 ? -1 : index - 1]?.author === author
+                  ? ""
+                  : author === userContext?.user?.username
+                  ? "You"
+                  : author}
+              </Typography>
+              <Stack
+                flexDirection={"row"}
+                justifyContent={
+                  author !== userContext?.user?.username ? "start" : "end"
+                }
+              >
+                <Stack style={checkBorderStyle(author)} p={2}>
+                  <Typography
+                    sx={{
+                      fontSize: "13px",
+                      marginBottom: 1,
+                    }}
+                  >
+                    {message}
+                  </Typography>
+                </Stack>
               </Stack>
+              <Typography
+                mr={1}
+                sx={{
+                  fontSize: "11px",
+                  marginBottom: 1,
+                  textAlign:
+                    author !== userContext?.user?.username ? "left" : "right",
+                }}
+              >
+                {time === messageList[index === 0 ? -1 : index - 1]?.time &&
+                messageList[index === 0 ? -1 : index - 1]?.author === author
+                  ? ""
+                  : time}
+              </Typography>
             </Stack>
-            <Typography
-              mr={1}
-              sx={{
-                fontSize: "11px",
-                marginBottom: 1,
-                textAlign:
-                  author !== userContext?.user?.username ? "left" : "right",
-              }}
-            >
-              {time === messageList[index === 0 ? -1 : index - 1]?.time &&
-              messageList[index === 0 ? -1 : index - 1]?.author === author
-                ? ""
-                : time}
-            </Typography>
-          </Stack>
-        );
-      })}
-
+          );
+        })}
+      </Stack>
       <Stack flexDirection={"row"} gap={2} m={3}>
         <TextField
           InputProps={{ sx: { borderRadius: "25px" } }}
